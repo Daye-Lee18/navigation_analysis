@@ -1,3 +1,11 @@
+*.env 
+20250512_nodelinkdata/*
+20250512_nodelinkdata/*.shp
+20250512_nodelinkdata/*.dbf
+20250512_nodelinkdata/*.shx
+20250512_nodelinkdata/*.prj
+20250512_nodelinkdata/*.cpg
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
