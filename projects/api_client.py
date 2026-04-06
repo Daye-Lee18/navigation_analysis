@@ -20,7 +20,7 @@ ENV_PATH = BASE_DIR / ".env"
 YAML_PATH = BASE_DIR / "services.yaml"
 
 # 실제 포털 base url로 바꿔주세요.
-BASE_URL = "https://api.example.com"
+BASE_URL = "http://openapi.seoul.go.kr:8088"
 
 
 @dataclass
