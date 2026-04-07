@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7439201003a24982333765210e1ee873 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position:fixed; bottom:30px; left:30px; z-index:1000;
+                background:white; padding:10px; border:1px solid grey; font-size:13px;">
+    <b>VOC1 ETA 오차 링크</b><br>
+    <span style="color:red;">━━</span> 상위 10 (심각)<br>
+    <span style="color:orange;">━━</span> 상위 11~20
+    </div>
+    
+    
+            <div class="folium-map" id="map_7439201003a24982333765210e1ee873" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_7439201003a24982333765210e1ee873 = L.map(
+                "map_7439201003a24982333765210e1ee873",
+                {
+                    center: [37.5665, 126.978],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_c019dfc149a3fd98c5c78f0a6d8d3ec5 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_c019dfc149a3fd98c5c78f0a6d8d3ec5.addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            var poly_line_ee272de2c66ee861402827dd1f9ed4f4 = L.polyline(
+                [[37.60771158789296, 127.00387290036817], [37.60768677156723, 127.00374420343047], [37.60761627081443, 127.00348310791534], [37.607570702973085, 127.00324020908099], [37.60757252433743, 127.00301884170483], [37.60758544783873, 127.00284949151924], [37.60761689029535, 127.00262866421328], [37.60767806732993, 127.00238168202665], [37.607754591895336, 127.00215178062605], [37.607957595641864, 127.00163920550924]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_ee272de2c66ee861402827dd1f9ed4f4.bindTooltip(
+                `<div>
+                     정릉로 | ETA 오차 +0.4분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_a2f5595aac54470364674785ee6a309e = L.polyline(
+                [[37.54055634430994, 126.8164990780888], [37.54289609858016, 126.81652389131469]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_a2f5595aac54470364674785ee6a309e.bindTooltip(
+                `<div>
+                     봉오대로 | ETA 오차 +1.1분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_97c5b12b56596b1f9fa835b8f61bbb10 = L.polyline(
+                [[37.53868901915437, 126.84254582310257], [37.53879947439056, 126.84247810365025]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_97c5b12b56596b1f9fa835b8f61bbb10.bindTooltip(
+                `<div>
+                     강서로 | ETA 오차 +0.3분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_c6c8a75691150598a0808d3e9e63a10e = L.polyline(
+                [[37.462720579946954, 126.88586509081382], [37.46315280602329, 126.88549139223983], [37.46383121279048, 126.88490273581483], [37.464868699015305, 126.88402130808358]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_c6c8a75691150598a0808d3e9e63a10e.bindTooltip(
+                `<div>
+                     안양천로 | ETA 오차 +0.2분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_dc9911760173413c1c6b2b10ce0e2a50 = L.polyline(
+                [[37.510942119779685, 126.8919713201465], [37.511363849325704, 126.89282534615126]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_dc9911760173413c1c6b2b10ce0e2a50.bindTooltip(
+                `<div>
+                     경인로 | ETA 오차 +0.4분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_4094a2ccdb63527944d9842599d6ad35 = L.polyline(
+                [[37.46095138506755, 126.88721448033913], [37.46005860279479, 126.88796658486632], [37.45803272093408, 126.88950087326188], [37.45772949569512, 126.8896734460461]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_4094a2ccdb63527944d9842599d6ad35.bindTooltip(
+                `<div>
+                     안양천로 | ETA 오차 +1.0분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_409abd2485dbd7beedc9451e76c113bb = L.polyline(
+                [[37.51020411215217, 126.89045558217306], [37.510562859788635, 126.8912321353822]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_409abd2485dbd7beedc9451e76c113bb.bindTooltip(
+                `<div>
+                     경인로 | ETA 오차 +0.2분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_48cb1ff244eee50b622f67f8557add39 = L.polyline(
+                [[37.611614134432784, 127.03502062566642], [37.610963085323526, 127.03377515631159], [37.61077424309944, 127.0334139063332]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_48cb1ff244eee50b622f67f8557add39.bindTooltip(
+                `<div>
+                     월계로 | ETA 오차 +0.4분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_707c5a1c6abc32ad1639329e6ae93165 = L.polyline(
+                [[37.55367220781383, 127.17209990345725], [37.55174024343147, 127.1725630757077], [37.551087647934644, 127.17269445056783]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_707c5a1c6abc32ad1639329e6ae93165.bindTooltip(
+                `<div>
+                     상일로 | ETA 오차 +0.3분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d51766a00381ecef43a937573a38dd32 = L.polyline(
+                [[37.52633742091437, 127.12283417460857], [37.5263325291198, 127.12261191041321], [37.52625947310874, 127.1222182279913], [37.525570885509, 127.11979353436337], [37.52548719312299, 127.1192764530003], [37.52546443252693, 127.11866593855504], [37.52553007200346, 127.11814048111543], [37.52564179568539, 127.11775124104321]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_d51766a00381ecef43a937573a38dd32.bindTooltip(
+                `<div>
+                     강동대로 | ETA 오차 +0.7분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_388d47faf77b4c11ee7bb66ba64771ce = L.polyline(
+                [[37.53490297100393, 126.82188215720882], [37.535381408134356, 126.82509136731423]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_388d47faf77b4c11ee7bb66ba64771ce.bindTooltip(
+                `<div>
+                     가로공원로 | ETA 오차 +1.2분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_9663c099d8c92955e630c89634e766c1 = L.polyline(
+                [[37.51030227431521, 127.0685617997564], [37.510109993640164, 127.06744081704699]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_9663c099d8c92955e630c89634e766c1.bindTooltip(
+                `<div>
+                     올림픽로 | ETA 오차 +0.4분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b522997f401c14ccc90eae571be24915 = L.polyline(
+                [[37.52797376919053, 127.11904048620376], [37.52758457243878, 127.11880005927308]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_b522997f401c14ccc90eae571be24915.bindTooltip(
+                `<div>
+                     올림픽로 | ETA 오차 +0.3분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_6f6d362743ea44b671ce5f9bd578745e = L.polyline(
+                [[37.51207682515412, 126.89431978431509], [37.51215105633252, 126.89451723120932], [37.51241355357854, 126.89527419485397]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_6f6d362743ea44b671ce5f9bd578745e.bindTooltip(
+                `<div>
+                     경인로 | ETA 오차 +0.7분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_11181b486fe5c5a52889d57d2a083da9 = L.polyline(
+                [[37.596773138333205, 127.02132170987326], [37.59665061075905, 127.02125549991025], [37.59651324376144, 127.02117059307531], [37.59638640941275, 127.0210749015947], [37.59625917012095, 127.02095563929879], [37.59603476135697, 127.02070912082667], [37.59600302820659, 127.02067271927496]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_11181b486fe5c5a52889d57d2a083da9.bindTooltip(
+                `<div>
+                     동소문로 | ETA 오차 +1.3분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f453186dc1e313a83f69d3d09725c24c = L.polyline(
+                [[37.52863913552923, 127.05625729390309], [37.52792068404297, 127.05585247846402]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_f453186dc1e313a83f69d3d09725c24c.bindTooltip(
+                `<div>
+                     영동대로 | ETA 오차 +0.6분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_541ff4537dc5ee6095f3500a3daca8cb = L.polyline(
+                [[37.53915413127914, 126.82238317288969], [37.539173022498936, 126.82281856240071]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_541ff4537dc5ee6095f3500a3daca8cb.bindTooltip(
+                `<div>
+                     화곡로 | ETA 오차 +1.5분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_6daa0439cc002fc3c24f58e84f8a97f1 = L.polyline(
+                [[37.61864974149694, 127.07865772902773], [37.619109460654215, 127.07999984657229], [37.61915635805134, 127.08014879110942], [37.61916774604411, 127.08018495910548], [37.61921171870804, 127.08037175556944], [37.619296815482706, 127.08084615188305], [37.619428837432956, 127.0815845647447]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_6daa0439cc002fc3c24f58e84f8a97f1.bindTooltip(
+                `<div>
+                     화랑로 | ETA 오차 +0.9분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_8345990111d9531c1a4fceeb89939d1c = L.polyline(
+                [[37.51394834728733, 126.95635683365799], [37.51552878537528, 126.957483270172]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_8345990111d9531c1a4fceeb89939d1c.bindTooltip(
+                `<div>
+                     양녕로 | ETA 오차 +1.0분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_41cc7caceb76bce63090aed4dd42795e = L.polyline(
+                [[37.63338610755595, 127.06398258091521], [37.63233541656815, 127.06231307253844]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_7439201003a24982333765210e1ee873);
+        
+    
+            poly_line_41cc7caceb76bce63090aed4dd42795e.bindTooltip(
+                `<div>
+                     월계로 | ETA 오차 +0.1분
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

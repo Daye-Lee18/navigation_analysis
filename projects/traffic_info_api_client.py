@@ -1,55 +1,20 @@
 import requests
 import xml.etree.ElementTree as ET
 import psycopg2
-from psycopg2 import sql
 from datetime import datetime
-import time 
+import time
+import traceback
 
 API_KEY = "58775479626461793838746d657374"
-# LINK_ID = "1000000301"
 DB_USER = "dayelee"
-DB_PASSWORD = "'0178'"  
+DB_PASSWORD = "'0178'"
 DB_NAME = "navigation_db"
 DB_HOST = "localhost"
 DB_PORT = 5432
 NUM_LINK_ID = 10000
 
 
-conn = psycopg2.connect(
-    host="localhost",
-    dbname="navigation_db",
-    user=DB_USER,   
-    password=DB_PASSWORD,
-    port=DB_PORT
-)
-
-cur = conn.cursor()
-
-# ------------------------- 링크가져오기 
-# 실험용: 링크 20개만 가져오기
-query = """
-    SELECT link_id
-    FROM link
-    WHERE link_id IS NOT NULL
-      AND CAST(SUBSTRING(link_id FROM 1 FOR 3) AS integer) BETWEEN 100 AND 124
-    LIMIT %s
-"""
-cur.execute(query, (NUM_LINK_ID,))
-
-link_ids = [row[0] for row in cur.fetchall()]
-
-# URL = f"http://openapi.seoul.go.kr:8088/{API_KEY}/xml/TrafficInfo/1/5/{LINK_ID}"
-
 def check_api_result(result_code: str, result_message: str | None = None) -> tuple[bool, str]:
-    """
-    API 결과코드를 해석해서
-    - 정상 처리 여부
-    - 사용자에게 보여줄 메시지
-    를 반환한다.
-
-    Returns:
-        (is_success, message)
-    """
     code_messages = {
         "INFO-000": "정상 처리되었습니다.",
         "ERROR-300": "필수값이 누락되어 있습니다. 요청 인자를 확인하세요.",
@@ -68,49 +33,63 @@ def check_api_result(result_code: str, result_message: str | None = None) -> tup
         "INFO-200": "해당하는 데이터가 없습니다.",
     }
 
-    # 정상 처리
     if result_code == "INFO-000":
         return True, code_messages[result_code]
 
-    # 정상 제외: 모두 처리 안 됨 / 실패 / 예외로 취급
     default_msg = f"처리되지 않았습니다. result_code={result_code}"
     detail_msg = code_messages.get(result_code, default_msg)
 
-    # API에서 내려준 원본 메시지가 있으면 같이 붙임
     if result_message and result_message.strip():
         detail_msg = f"{detail_msg} (API 메시지: {result_message})"
 
     return False, detail_msg
 
+
+def load_link_ids(cur, limit_count: int) -> list[str]:
+    query = """
+        SELECT CAST(link_id AS TEXT)
+        FROM link
+        WHERE link_id IS NOT NULL
+          AND CAST(SUBSTRING(CAST(link_id AS TEXT) FROM 1 FOR 3) AS integer) BETWEEN 100 AND 124
+        LIMIT %s
+    """
+    cur.execute(query, (limit_count,))
+    return [row[0] for row in cur.fetchall()]
+
+
 def main():
-    while True:
-        for link_id in link_ids:
-            url = f"http://openapi.seoul.go.kr:8088/{API_KEY}/xml/TrafficInfo/1/5/{link_id}"
+    conn = psycopg2.connect(
+        host=DB_HOST,
+        dbname=DB_NAME,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        port=DB_PORT
+    )
+    cur = conn.cursor()
 
-            try:
-                response = requests.get(url, timeout=10)
-                response.raise_for_status()
+    try:
+        link_ids = load_link_ids(cur, NUM_LINK_ID)
+        print(f"수집 대상 link 수: {len(link_ids)}")
 
-                root = ET.fromstring(response.text)
+        while True:
+            for link_id in link_ids:
+                url = f"http://openapi.seoul.go.kr:8088/{API_KEY}/xml/TrafficInfo/1/5/{link_id}"
 
-                result_code = root.findtext("RESULT/CODE")
-                result_message = root.findtext("RESULT/MESSAGE")
-        # <?xml version="1.0" encoding="UTF-8" standalone="yes"?><TrafficInfo><list_total_count>1</list_total_count><RESULT><CODE>INFO-000</CODE><MESSAGE>정상 처리되었습니다</MESSAGE></RESULT><row><link_id>1220003800</link_id><prcs_spd>89</prcs_spd><prcs_trv_time>121</prcs_trv_time></row></TrafficInfo>
-                rows = root.findall("row")
-                
-                is_success, status_msg = check_api_result(result_code, result_message)
+                try:
+                    response = requests.get(url, timeout=10)
+                    response.raise_for_status()
 
-                if not is_success:
-                    print(status_msg)
-                    continue 
-                    # 중간에 바로 멈추기 
-                    # if not is_success:
-                    #     print(status_msg)
-                    #     cur.close()
-                    #     conn.close()
-                    #     raise RuntimeError(status_msg)
-                else:
-                    print("정상 처리:", status_msg)
+                    root = ET.fromstring(response.text)
+
+                    result_code = root.findtext("RESULT/CODE")
+                    result_message = root.findtext("RESULT/MESSAGE")
+                    rows = root.findall("row")
+
+                    is_success, status_msg = check_api_result(result_code, result_message)
+
+                    if not is_success:
+                        print(f"{link_id} 응답 비정상: {status_msg}")
+                        continue
 
                     for row in rows:
                         api_link_id = row.findtext("link_id")
@@ -133,18 +112,32 @@ def main():
                         ))
 
                     conn.commit()
-                
+                    print(f"{link_id} 저장 완료")
 
-            except Exception as e:
-                conn.rollback()
-                print(f"{link_id} 실패: {e}")
+                except Exception as e:
+                    try:
+                        if conn and not conn.closed:
+                            conn.rollback()
+                    except Exception:
+                        pass
 
-            time.sleep(0.2)  # 너무 빠른 연속 호출 방지
+                    print(f"{link_id} 실패: {e}")
+                    traceback.print_exc()
 
-        cur.close()
-        conn.close()
+                time.sleep(0.2)
 
-    print("여러 링크 traffic_info 적재 완료")
+    finally:
+        try:
+            if cur:
+                cur.close()
+        except Exception:
+            pass
+
+        try:
+            if conn and not conn.closed:
+                conn.close()
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":

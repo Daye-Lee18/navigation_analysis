@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_74c78741b4f11fc91ee3ee19031f9143 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position:fixed; bottom:30px; left:30px; z-index:1000;
+                background:white; padding:10px; border:1px solid grey; font-size:13px;">
+    <b>VOC2 경로 비교</b><br>
+    <span style="color:steelblue;">━━</span> Route A: 올림픽대로 (직접, 18.5km)<br>
+    <span style="color:tomato;">━━</span> Route B: 동일로·천호대로 (우회, 18.3km)
+    </div>
+    
+    
+            <div class="folium-map" id="map_74c78741b4f11fc91ee3ee19031f9143" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_74c78741b4f11fc91ee3ee19031f9143 = L.map(
+                "map_74c78741b4f11fc91ee3ee19031f9143",
+                {
+                    center: [37.53, 127.08],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_1b102595dd93f3a952436afc1f7a8b9e = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_1b102595dd93f3a952436afc1f7a8b9e.addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            var poly_line_425867b06edf08631a2fe7469c807606 = L.polyline(
+                [[37.51842870094354, 127.07073960616951], [37.518475497301566, 127.0690633172233], [37.518521517547406, 127.06760138417664]],
+                {"bubblingMouseEvents": true, "color": "steelblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "steelblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_425867b06edf08631a2fe7469c807606.bindTooltip(
+                `<div>
+                     Route A (직접): 올림픽대로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_a259815a155103fbba2dc70e7acf706d = L.polyline(
+                [[37.526079991363105, 127.10510253853465], [37.524399099467246, 127.10314121140762], [37.524163367118234, 127.10282660804077], [37.52379194976807, 127.10228284711725], [37.523495530052124, 127.10184694501967], [37.52291149855172, 127.10087695884097]],
+                {"bubblingMouseEvents": true, "color": "steelblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "steelblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_a259815a155103fbba2dc70e7acf706d.bindTooltip(
+                `<div>
+                     Route A (직접): 올림픽대로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_4ad6fd5dc01a175b1596db65820fe953 = L.polyline(
+                [[37.517347681679354, 127.0882031183011], [37.51729552603447, 127.0878139853457], [37.5172055310489, 127.0870117945163], [37.51712986460067, 127.086167721874], [37.517035314867805, 127.08505427364426], [37.51698802749806, 127.08450952268075], [37.516955156708846, 127.08380317412342], [37.51692224288146, 127.08315069721162], [37.51692268366156, 127.08252220066697], [37.51692777288061, 127.08206130848883], [37.516951885416724, 127.0816662790378], [37.51698330923381, 127.08108763167493]],
+                {"bubblingMouseEvents": true, "color": "steelblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "steelblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_4ad6fd5dc01a175b1596db65820fe953.bindTooltip(
+                `<div>
+                     Route A (직접): 올림픽대로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_12110e392a278f44f86db5b86a86aca0 = L.polyline(
+                [[37.63878915272471, 127.06701868960896], [37.641106991579605, 127.06597573151768]],
+                {"bubblingMouseEvents": true, "color": "tomato", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "tomato", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_12110e392a278f44f86db5b86a86aca0.bindTooltip(
+                `<div>
+                     Route B (우회): 동일로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_7e955e3daa0c58f7dbe492cb3384de50 = L.polyline(
+                [[37.59139871558473, 127.08019243900952], [37.59189153493128, 127.08022591237764], [37.59217458643747, 127.08024513805898]],
+                {"bubblingMouseEvents": true, "color": "tomato", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "tomato", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_7e955e3daa0c58f7dbe492cb3384de50.bindTooltip(
+                `<div>
+                     Route B (우회): 동일로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_c10fdc8c150a864cbd0655e03ea1e80e = L.polyline(
+                [[37.649053942543276, 127.06219479176131], [37.64937571880608, 127.06203480062509], [37.649516046374245, 127.06196728019847], [37.6496764828986, 127.06191186137833], [37.65001109444766, 127.06182261103895], [37.65140665319503, 127.0614501821214]],
+                {"bubblingMouseEvents": true, "color": "tomato", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "tomato", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_c10fdc8c150a864cbd0655e03ea1e80e.bindTooltip(
+                `<div>
+                     Route B (우회): 동일로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_a470e4449b923d1c8bfaef1e7c831823 = L.polyline(
+                [[37.66463071881479, 127.05793128255327], [37.666509538992905, 127.05742800669368], [37.66730491705098, 127.05721785051426]],
+                {"bubblingMouseEvents": true, "color": "tomato", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "tomato", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_a470e4449b923d1c8bfaef1e7c831823.bindTooltip(
+                `<div>
+                     Route B (우회): 동일로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0a3c016c9ccb8688b978cc196b3b87af = L.polyline(
+                [[37.66123767087441, 127.05883516108787], [37.66311688071089, 127.05833100116024], [37.664524932727566, 127.05795940692177]],
+                {"bubblingMouseEvents": true, "color": "tomato", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "tomato", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_0a3c016c9ccb8688b978cc196b3b87af.bindTooltip(
+                `<div>
+                     Route B (우회): 동일로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_960f82f093e00bd9b4788310bf41b4ca = L.polyline(
+                [[37.64120879017605, 127.06592992560209], [37.64356083602304, 127.06487156017988]],
+                {"bubblingMouseEvents": true, "color": "tomato", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "tomato", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_960f82f093e00bd9b4788310bf41b4ca.bindTooltip(
+                `<div>
+                     Route B (우회): 동일로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_8a2604655a0e152219c8b1044f6cf433 = L.polyline(
+                [[37.64366262462369, 127.06482572008105], [37.64549965602932, 127.0639977473722]],
+                {"bubblingMouseEvents": true, "color": "tomato", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "tomato", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_8a2604655a0e152219c8b1044f6cf433.bindTooltip(
+                `<div>
+                     Route B (우회): 동일로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d88dcc4accc5d08faea8c7d7366278f1 = L.polyline(
+                [[37.62569496335638, 127.0730415921129], [37.62624652810894, 127.0727756973566], [37.62636802904911, 127.07271688526848]],
+                {"bubblingMouseEvents": true, "color": "tomato", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "tomato", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_d88dcc4accc5d08faea8c7d7366278f1.bindTooltip(
+                `<div>
+                     Route B (우회): 동일로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_87f48a9ce40f0288624e006cc81cddb4 = L.polyline(
+                [[37.615616192002065, 127.07638601073678], [37.61595102214051, 127.07627995692091], [37.61657926186341, 127.07608096614379]],
+                {"bubblingMouseEvents": true, "color": "tomato", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "tomato", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_74c78741b4f11fc91ee3ee19031f9143);
+        
+    
+            poly_line_87f48a9ce40f0288624e006cc81cddb4.bindTooltip(
+                `<div>
+                     Route B (우회): 동일로
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

@@ -5,6 +5,8 @@
 20250512_nodelinkdata/*.shx
 20250512_nodelinkdata/*.prj
 20250512_nodelinkdata/*.cpg
+*.pkl
+processed/*.pkl
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -213,3 +215,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+
+processed/speed_long.pkl
+
+processed/*.pkl
