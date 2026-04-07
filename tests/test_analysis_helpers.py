@@ -43,7 +43,7 @@ def _install_import_stubs() -> None:
 
 if pd is not None:
     _install_import_stubs()
-    from navigation_analysis import voc1_analysis, voc2_analysis
+    from navigation_analysis.analysis import voc1_analysis, voc2_analysis
 else:
     voc1_analysis = None
     voc2_analysis = None

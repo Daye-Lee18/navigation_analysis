@@ -5,9 +5,12 @@
 20250512_nodelinkdata/*.shx
 20250512_nodelinkdata/*.prj
 20250512_nodelinkdata/*.cpg
+data/raw/node_link/
 *.pkl
 processed/*.pkl
-*.txt
+log*.txt
+logs/*.txt
+log/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

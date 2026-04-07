@@ -3,7 +3,45 @@
 A data-driven investigation into two real navigation complaints (VOCs) using Seoul traffic data, road-link geometry, and live incident APIs.
 
 ---
+  ## Folder Structure
 
+  ```text
+  navigation_analysis/
+  ├── analysis/                # 분석 스크립트 
+  │   ├── data_prep.py
+  │   ├── voc1_analysis.py
+  │   ├── voc2_analysis.py
+  │   └── data.ipynb
+  ├── api/                     # API 클라이언트 
+  │   ├── acc_info_api_client.py
+  │   ├── traffic_info_api_client.py
+  │   ├── api_client.py
+  │   └── services.yaml
+  ├── data/
+  │   ├── raw/
+  │   │   ├── node_link/       # 국토부 SHP 
+  │   │   ├── traffic_speed/   # TOPIS 엑셀 
+  │   │   └── link_mapping.xlsx 
+  │   └── processed/           # pkl 파일 
+  ├── output/                  # 차트·지도 결과물
+  ├── reports/                 # 보고서 + PDF 
+  ├── tests/                   # 유닛 테스트 
+  └── logs/                    # 로그 파일 
+
+  ## Notes
+
+  - analysis/: data preprocessing and VOC analysis scripts
+  - api/: external traffic / incident API clients and
+    shared config
+  - data/raw/: original source files
+  - data/processed/: processed intermediate datasets used
+    for analysis
+  - output/: generated charts, JSON summaries, and HTML
+    maps
+  - reports/: final writeups and submitted documents
+  - tests/: helper-level unit tests
+  - logs/: execution logs                                                            
+---
 ## Background
 
 Two customer complaints were given as the starting point:
@@ -172,13 +210,13 @@ Indirect:        Speed underestimation (H1) on 32% of days, cost-function β too
 
 ```bash
 # 1. Prepare processed datasets
-python data_prep.py
+python analysis/data_prep.py
 
 # 2. Run VOC1 analysis
-python voc1_analysis.py
+python analysis/voc1_analysis.py
 
 # 3. Run VOC2 analysis
-python voc2_analysis.py
+python analysis/voc2_analysis.py
 
 # 4. Open interactive maps
 open output/voc1_map.html
@@ -190,7 +228,7 @@ open output/voc2_map.html
 - Python 3.10 (Anaconda)
 - `pandas`, `geopandas`, `folium`, `matplotlib`, `shapely`, `psycopg2`
 - PostgreSQL (`navigation_db`) with Seoul node-link data loaded
-- `.env` with API keys for AccInfo and TrafficInfo services
+- `api/.env` with API keys for AccInfo and TrafficInfo services
 
 ---
 
